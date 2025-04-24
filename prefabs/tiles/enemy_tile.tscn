@@ -1,0 +1,104 @@
+[gd_scene load_steps=13 format=3 uid="uid://cijlhxrpi04ud"]
+
+[ext_resource type="Script" uid="uid://d2m1s6cfvlkly" path="res://scripts/tiles/enemy_tile.gd" id="1_jhp5x"]
+[ext_resource type="Texture2D" uid="uid://5rcfxjfifr6n" path="res://assets/monsters.png" id="2_wgq2e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_do2u2"]
+atlas = ExtResource("2_wgq2e")
+region = Rect2(0, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k34jl"]
+atlas = ExtResource("2_wgq2e")
+region = Rect2(32, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p550a"]
+atlas = ExtResource("2_wgq2e")
+region = Rect2(64, 384, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pd5kx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_do2u2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k34jl")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p550a")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uytk1"]
+atlas = ExtResource("2_wgq2e")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f3d6"]
+atlas = ExtResource("2_wgq2e")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewi1f"]
+atlas = ExtResource("2_wgq2e")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lb31"]
+atlas = ExtResource("2_wgq2e")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jfdq1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uytk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f3d6")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewi1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lb31")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44aox"]
+
+[node name="enemy_tile" type="CharacterBody2D"]
+z_index = 1
+script = ExtResource("1_jhp5x")
+
+[node name="enemy_01" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_pd5kx")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="enemy_02" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_jfdq1")
+animation = &"attack"
+autoplay = "idle"
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_44aox")
+
+[node name="raycast" type="RayCast2D" parent="."]

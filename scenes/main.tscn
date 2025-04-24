@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2x0hgdox4au1"]
+
+[ext_resource type="Script" uid="uid://c82cprb2n8prp" path="res://scripts/manager/main_manager.gd" id="1_o5qli"]
+[ext_resource type="FontFile" uid="uid://8ta8p4wyp067" path="res://assets/fonts/Orbitron-Black.ttf" id="2_0wfyh"]
+
+[node name="main" type="CanvasLayer"]
+script = ExtResource("1_o5qli")
+
+[node name="control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="color" type="ColorRect" parent="control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="Label" type="Label" parent="control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = 32.0
+offset_right = 126.0
+offset_bottom = 74.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_0wfyh")
+theme_override_font_sizes/font_size = 30
+text = "Echos of the void"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="button_play" type="Button" parent="control"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 136.0
+offset_right = 215.0
+offset_bottom = 167.0
+theme_override_fonts/font = ExtResource("2_0wfyh")
+text = "Iniciar jogo
+"
+
+[node name="button_comandos" type="Button" parent="control"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 184.0
+offset_right = 214.0
+offset_bottom = 216.0
+theme_override_fonts/font = ExtResource("2_0wfyh")
+text = "Comandos"
+
+[node name="button_quit" type="Button" parent="control"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 232.0
+offset_right = 216.0
+offset_bottom = 261.0
+theme_override_fonts/font = ExtResource("2_0wfyh")
+text = "Sair"
+
+[connection signal="pressed" from="control/button_play" to="." method="_on_button_play_pressed"]
+[connection signal="pressed" from="control/button_comandos" to="." method="_on_button_comandos_pressed"]
+[connection signal="pressed" from="control/button_quit" to="." method="_on_button_quit_pressed"]

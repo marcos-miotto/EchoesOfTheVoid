@@ -1,0 +1,56 @@
+[gd_scene load_steps=18 format=3 uid="uid://cqpy54jt7ds5x"]
+
+[ext_resource type="Script" uid="uid://dli26124usinu" path="res://scripts/manager/game_manager.gd" id="1_0tnpc"]
+[ext_resource type="Script" uid="uid://belr1dvlem168" path="res://scripts/manager/board_manager.gd" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://c25lumiijnehh" path="res://prefabs/tiles/floor_tile.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://dj6wfywcmwgpa" path="res://prefabs/tiles/outer_wall_tile.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://boubjkiun1kbi" path="res://prefabs/tiles/wall_tile.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://cukb17duw3duu" path="res://prefabs/tiles/oxigen_tile.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://ddsnks4cpd1pm" path="res://prefabs/tiles/exit_tile.tscn" id="6_p57ef"]
+[ext_resource type="PackedScene" uid="uid://cijlhxrpi04ud" path="res://prefabs/tiles/enemy_tile.tscn" id="7_gee14"]
+[ext_resource type="PackedScene" uid="uid://kthmx5shbvi4" path="res://prefabs/player.tscn" id="7_u5sy4"]
+[ext_resource type="AudioStream" uid="uid://blaoouwvxmkev" path="res://assets/16_human_walk_stone_1.wav" id="10_kvuet"]
+[ext_resource type="Script" uid="uid://cej4j3g8ljdam" path="res://scripts/manager/hud_manager.gd" id="10_vtaks"]
+[ext_resource type="AudioStream" uid="uid://bkakbk2rx866g" path="res://assets/16_human_walk_stone_2.wav" id="11_trtic"]
+[ext_resource type="AudioStream" uid="uid://b5ak2ok6gax8i" path="res://assets/16_human_walk_stone_3.wav" id="12_ir15t"]
+[ext_resource type="AudioStream" uid="uid://hgsm1y3ohtrc" path="res://assets/07_human_atk_sword_2.wav" id="13_ir15t"]
+[ext_resource type="AudioStream" uid="uid://cu4djdjtwp" path="res://assets/grunting_2_sean.wav" id="14_ca42v"]
+[ext_resource type="AudioStream" uid="uid://cks035q4qdnmc" path="res://assets/damage_6_sean.wav" id="15_rysoc"]
+[ext_resource type="AudioStream" uid="uid://b0rsdb18jlv3s" path="res://assets/damage_7_sean.wav" id="16_ssvqc"]
+
+[node name="game_manager" type="Node2D"]
+script = ExtResource("1_0tnpc")
+
+[node name="board_manager" type="Node2D" parent="."]
+position = Vector2(48, 48)
+script = ExtResource("1_uwrxv")
+floor_tile = ExtResource("2_yqjtg")
+outer_wall_tile = ExtResource("3_lnu2h")
+wall_tile = ExtResource("4_lbhrr")
+oxigen_tile = ExtResource("5_iywne")
+exit_tile = ExtResource("6_p57ef")
+enemy_tile = ExtResource("7_gee14")
+
+[node name="player" parent="." instance=ExtResource("7_u5sy4")]
+texture_filter = 1
+position = Vector2(48, 272)
+sfx_footstep = [ExtResource("10_kvuet"), ExtResource("11_trtic"), ExtResource("12_ir15t")]
+sfx_attack = [ExtResource("13_ir15t"), ExtResource("14_ca42v")]
+sfx_damage = [ExtResource("15_rysoc"), ExtResource("16_ssvqc")]
+
+[node name="canvas_layer" type="CanvasLayer" parent="."]
+
+[node name="hud_manager" type="Control" parent="canvas_layer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_vtaks")
+
+[node name="txt_health" type="Label" parent="canvas_layer/hud_manager"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Oxigênio: 100"

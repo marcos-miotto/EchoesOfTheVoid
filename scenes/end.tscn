@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://crrqj6idpdt75"]
+
+[ext_resource type="Script" uid="uid://c1icx7vnn87ve" path="res://scripts/manager/end_manager.gd" id="1_mwn6m"]
+[ext_resource type="FontFile" uid="uid://8ta8p4wyp067" path="res://assets/fonts/Orbitron-Black.ttf" id="2_3d26k"]
+
+[node name="End" type="CanvasLayer"]
+script = ExtResource("1_mwn6m")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="color" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="LabelTitle" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 32.0
+offset_right = 235.0
+offset_bottom = 74.0
+theme_override_fonts/font = ExtResource("2_3d26k")
+theme_override_font_sizes/font_size = 30
+text = "Game Over"
+
+[node name="button_restart" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 168.0
+offset_right = 228.0
+offset_bottom = 199.0
+theme_override_fonts/font = ExtResource("2_3d26k")
+text = "Jogar novamente"
+
+[node name="button_menu" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 216.0
+offset_right = 221.0
+offset_bottom = 247.0
+theme_override_fonts/font = ExtResource("2_3d26k")
+text = "Menu principal"
+
+[connection signal="pressed" from="Control/button_restart" to="." method="_on_button_restart_pressed"]
+[connection signal="pressed" from="Control/button_menu" to="." method="_on_button_menu_pressed"]

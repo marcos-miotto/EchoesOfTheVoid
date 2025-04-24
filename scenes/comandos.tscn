@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj0do3c2saxwe"]
+
+[ext_resource type="Script" uid="uid://dnlh0m6aawi7d" path="res://scripts/manager/comandos.gd" id="1_1gft6"]
+[ext_resource type="FontFile" uid="uid://8ta8p4wyp067" path="res://assets/fonts/Orbitron-Black.ttf" id="1_lk2ci"]
+
+[node name="comandos" type="CanvasLayer"]
+script = ExtResource("1_1gft6")
+
+[node name="comandos" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="color" type="ColorRect" parent="comandos"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="commandos" type="Label" parent="comandos"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 72.0
+offset_right = -32.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_lk2ci")
+text = "↑ – Andar para cima
+← – Andar para a esquerda
+↓ – Andar para baixo
+→ – Andar para a direita
+Espaço – Atacar / Interagir
+Esc – Pausar o jogo"
+
+[node name="titulo_tela" type="Label" parent="comandos"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 311.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("1_lk2ci")
+theme_override_font_sizes/font_size = 30
+text = "Comandos do jogo"
+
+[node name="button_menu" type="Button" parent="comandos"]
+offset_left = 88.0
+offset_top = 248.0
+offset_right = 213.0
+offset_bottom = 279.0
+theme_override_fonts/font = ExtResource("1_lk2ci")
+text = "Menu principal"
+
+[connection signal="pressed" from="comandos/button_menu" to="." method="_on_button_menu_pressed"]
