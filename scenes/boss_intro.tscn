@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://wied28auoux8"]
+
+[ext_resource type="Script" uid="uid://2avslofe0dfi" path="res://scenes/boss_intro.gd" id="1_yahwh"]
+[ext_resource type="VideoStream" path="res://assets/video/boss-appears.ogv" id="2_xngyo"]
+
+[node name="BossIntro" type="Node"]
+script = ExtResource("1_yahwh")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("2_xngyo")
+autoplay = true

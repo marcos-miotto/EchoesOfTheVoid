@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://csne8y0ln30mt"]
+
+[ext_resource type="Script" uid="uid://bv4ekg61l4f2v" path="res://scenes/death_video.gd" id="1_qh6wg"]
+[ext_resource type="VideoStream" path="res://assets/video/loser.ogv" id="2_qh6wg"]
+
+[node name="DeathVideo" type="CanvasLayer"]
+script = ExtResource("1_qh6wg")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_qh6wg")
+autoplay = true
+expand = true
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

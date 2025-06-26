@@ -70,8 +70,9 @@ func apply_damage(strenght: int, enemy_hit: bool = false) -> void:
 		GameController.health = 0
 		update_health.emit(GameController.health)
 		$audio_stream_death.play()
+		var tree = get_tree()
 		await $audio_stream_death.finished
-		get_tree().change_scene_to_file("res://scenes/end.tscn")
+		tree.change_scene_to_file("res://scenes/death_video.tscn")
 
 func _punch() -> void:
 	if death or in_move: return

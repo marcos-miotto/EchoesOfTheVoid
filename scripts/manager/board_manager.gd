@@ -64,7 +64,6 @@ func _spawn_boss_random() -> void:
 	boss.global_position = _random_position()
 	add_child(boss)
 
-
 func setup_scene(level: int) -> void:
 	_initialize_list()
 	_board_setup()
@@ -77,6 +76,12 @@ func setup_scene(level: int) -> void:
 	_spawn_object_random(oxigen_tile, oxigen_count.minimum, oxigen_count.maximum)
 	_spawn_exit()
 
+func spawn_boss_after_intro() -> void:
+	_spawn_boss_random()
+	_spawn_object_random(wall_tile, wall_count.minimum, wall_count.maximum)
+	_spawn_object_random(oxigen_tile, oxigen_count.minimum, oxigen_count.maximum)
+	_spawn_exit()
+	
 class Count:
 	var minimum : int
 	var maximum : int
