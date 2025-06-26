@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cqpy54jt7ds5x"]
+[gd_scene load_steps=26 format=3 uid="uid://cqpy54jt7ds5x"]
 
 [ext_resource type="Script" uid="uid://dli26124usinu" path="res://scripts/manager/game_manager.gd" id="1_0tnpc"]
 [ext_resource type="Script" uid="uid://belr1dvlem168" path="res://scripts/manager/board_manager.gd" id="1_uwrxv"]
@@ -17,6 +17,26 @@
 [ext_resource type="AudioStream" uid="uid://cu4djdjtwp" path="res://assets/grunting_2_sean.wav" id="14_ca42v"]
 [ext_resource type="AudioStream" uid="uid://cks035q4qdnmc" path="res://assets/damage_6_sean.wav" id="15_rysoc"]
 [ext_resource type="AudioStream" uid="uid://b0rsdb18jlv3s" path="res://assets/damage_7_sean.wav" id="16_ssvqc"]
+[ext_resource type="FontFile" uid="uid://cdb6kxy34xgi0" path="res://assets/fonts/Orbitron-Medium.ttf" id="18_ssvqc"]
+[ext_resource type="FontFile" uid="uid://8ta8p4wyp067" path="res://assets/fonts/Orbitron-Black.ttf" id="19_1kice"]
+[ext_resource type="AudioStream" uid="uid://cgryu27hyghw1" path="res://audio/722858__audiocoffee__futuristic-sci-fi-cinematic-loop1.wav" id="19_264po"]
+[ext_resource type="FontFile" uid="uid://os4aos17qe63" path="res://assets/fonts/Orbitron-VariableFont_wght.ttf" id="19_bt5mj"]
+[ext_resource type="AudioStream" uid="uid://c671rdevl4yf8" path="res://audio/sci-fi-button-sound-effect.ogg" id="21_37s47"]
+[ext_resource type="AudioStream" uid="uid://bphb7tndrba6p" path="res://audio/mouse-click-sound-fx.mp3" id="22_bt5mj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bt5mj"]
+bg_color = Color(0.817521, 0.817521, 0.817521, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1j6l"]
+bg_color = Color(0.405827, 0.842524, 0.664508, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="game_manager" type="Node2D"]
 script = ExtResource("1_0tnpc")
@@ -51,6 +71,68 @@ script = ExtResource("10_vtaks")
 
 [node name="txt_health" type="Label" parent="canvas_layer/hud_manager"]
 layout_mode = 0
-offset_right = 40.0
+offset_right = 81.0
 offset_bottom = 23.0
-text = "Oxigênio: 100"
+theme_override_fonts/font = ExtResource("18_ssvqc")
+text = "Oxigênio:"
+
+[node name="txt_level" type="Label" parent="canvas_layer/hud_manager"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 295.0
+offset_right = 80.0
+offset_bottom = 318.0
+theme_override_fonts/font = ExtResource("18_ssvqc")
+text = "Andar:"
+
+[node name="txt_monsters_killed" type="Label" parent="canvas_layer/hud_manager"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 296.0
+offset_right = 283.0
+offset_bottom = 319.0
+theme_override_fonts/font = ExtResource("18_ssvqc")
+text = "Inimigos derrotados:"
+
+[node name="HealthBar" type="ProgressBar" parent="canvas_layer/hud_manager"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -78.0
+offset_top = 1.0
+offset_right = 47.0
+offset_bottom = 21.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.0634055, 0.0288377, 0.025759, 0.996078)
+theme_override_fonts/font = ExtResource("19_bt5mj")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/background = SubResource("StyleBoxFlat_bt5mj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_e1j6l")
+value = 100.0
+rounded = true
+
+[node name="button_menu" type="Button" parent="canvas_layer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("19_1kice")
+theme_override_font_sizes/font_size = 12
+text = "Menu"
+
+[node name="GameMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_264po")
+volume_db = -19.276
+autoplay = true
+
+[node name="HoverSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_37s47")
+
+[node name="SelectSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_bt5mj")
+
+[connection signal="mouse_entered" from="canvas_layer/button_menu" to="." method="_on_button_menu_mouse_entered"]
+[connection signal="pressed" from="canvas_layer/button_menu" to="." method="_on_button_menu_pressed"]

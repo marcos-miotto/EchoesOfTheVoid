@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvx5w7p3york5"]
+
+[ext_resource type="Script" uid="uid://cbj2gk27csnlw" path="res://scenes/intro_video.gd" id="1_f3j0u"]
+[ext_resource type="VideoStream" uid="uid://cud47aov2xrc8" path="res://assets/video/EchoesOfTheVoidIntroVideo.ogv" id="1_yro6x"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_f3j0u")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_yro6x")
+autoplay = true
+expand = true
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

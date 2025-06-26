@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://crrqj6idpdt75"]
+[gd_scene load_steps=6 format=3 uid="uid://crrqj6idpdt75"]
 
 [ext_resource type="Script" uid="uid://c1icx7vnn87ve" path="res://scripts/manager/end_manager.gd" id="1_mwn6m"]
 [ext_resource type="FontFile" uid="uid://8ta8p4wyp067" path="res://assets/fonts/Orbitron-Black.ttf" id="2_3d26k"]
+[ext_resource type="AudioStream" uid="uid://dhxwwkfdmjljf" path="res://audio/dishonored-game-over-sound-effect.mp3" id="3_p7m4f"]
+[ext_resource type="AudioStream" uid="uid://bphb7tndrba6p" path="res://audio/mouse-click-sound-fx.mp3" id="4_s4tl2"]
+[ext_resource type="AudioStream" uid="uid://c671rdevl4yf8" path="res://audio/sci-fi-button-sound-effect.ogg" id="5_8hmjt"]
 
 [node name="End" type="CanvasLayer"]
 script = ExtResource("1_mwn6m")
@@ -33,6 +36,18 @@ theme_override_fonts/font = ExtResource("2_3d26k")
 theme_override_font_sizes/font_size = 30
 text = "Game Over"
 
+[node name="LabelTitle2" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 103.0
+offset_right = 319.0
+offset_bottom = 145.0
+theme_override_fonts/font = ExtResource("2_3d26k")
+theme_override_font_sizes/font_size = 17
+text = "Você sobreviveu 3 andares"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="button_restart" type="Button" parent="Control"]
 layout_mode = 0
 offset_left = 88.0
@@ -51,5 +66,17 @@ offset_bottom = 247.0
 theme_override_fonts/font = ExtResource("2_3d26k")
 text = "Menu principal"
 
+[node name="GameOverMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_p7m4f")
+autoplay = true
+
+[node name="SelectSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_s4tl2")
+
+[node name="HoverSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_8hmjt")
+
+[connection signal="mouse_entered" from="Control/button_restart" to="." method="_on_button_restart_mouse_entered"]
 [connection signal="pressed" from="Control/button_restart" to="." method="_on_button_restart_pressed"]
+[connection signal="mouse_entered" from="Control/button_menu" to="." method="_on_button_menu_mouse_entered"]
 [connection signal="pressed" from="Control/button_menu" to="." method="_on_button_menu_pressed"]

@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2x0hgdox4au1"]
+[gd_scene load_steps=7 format=3 uid="uid://c2x0hgdox4au1"]
 
 [ext_resource type="Script" uid="uid://c82cprb2n8prp" path="res://scripts/manager/main_manager.gd" id="1_o5qli"]
 [ext_resource type="FontFile" uid="uid://8ta8p4wyp067" path="res://assets/fonts/Orbitron-Black.ttf" id="2_0wfyh"]
+[ext_resource type="AudioStream" uid="uid://dvpsjs3t8rutr" path="res://audio/futuristic-atmo-hangar-control-room.ogg" id="3_sugp2"]
+[ext_resource type="AudioStream" uid="uid://c671rdevl4yf8" path="res://audio/sci-fi-button-sound-effect.ogg" id="4_jyhfs"]
+[ext_resource type="AudioStream" uid="uid://btdf77wyrs2bv" path="res://audio/qquw-shade-button.mp3" id="5_tbgi4"]
+[ext_resource type="AudioStream" uid="uid://bphb7tndrba6p" path="res://audio/mouse-click-sound-fx.mp3" id="6_tefeu"]
 
 [node name="main" type="CanvasLayer"]
 script = ExtResource("1_o5qli")
@@ -28,14 +32,14 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -120.0
-offset_top = 32.0
-offset_right = 126.0
-offset_bottom = 74.0
+offset_left = -157.0
+offset_top = 36.0
+offset_right = 158.0
+offset_bottom = 78.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_0wfyh")
 theme_override_font_sizes/font_size = 30
-text = "Echos of the void"
+text = "Echoes of the void"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -67,6 +71,23 @@ offset_bottom = 261.0
 theme_override_fonts/font = ExtResource("2_0wfyh")
 text = "Sair"
 
+[node name="GameMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_sugp2")
+autoplay = true
+parameters/looping = false
+
+[node name="ClickSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_tbgi4")
+
+[node name="HoverSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jyhfs")
+
+[node name="SelectSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_tefeu")
+
+[connection signal="mouse_entered" from="control/button_play" to="." method="_on_button_play_mouse_entered"]
 [connection signal="pressed" from="control/button_play" to="." method="_on_button_play_pressed"]
+[connection signal="mouse_entered" from="control/button_comandos" to="." method="_on_button_comandos_mouse_entered"]
 [connection signal="pressed" from="control/button_comandos" to="." method="_on_button_comandos_pressed"]
+[connection signal="mouse_entered" from="control/button_quit" to="." method="_on_button_quit_mouse_entered"]
 [connection signal="pressed" from="control/button_quit" to="." method="_on_button_quit_pressed"]

@@ -6,6 +6,9 @@ extends Node2D
 @export var oxigen_tile: PackedScene
 @export var exit_tile : PackedScene
 @export var enemy_tile : PackedScene
+@export var boss_tile = load("res://prefabs/tiles/boss_tile.tscn")
+
+@onready var in_game_music = $GameMusicPlayer
 
 var column := 8
 var rows := 8
@@ -15,6 +18,7 @@ var wall_count = Count.new(4, 8)
 var oxigen_count = Count.new(1, 5)
 
 func _ready() -> void:
+	MusicPlayer.stop()
 	randomize()
 
 func _initialize_list() -> void:
@@ -55,11 +59,20 @@ func _spawn_exit() -> void:
 	temp_exit.global_position = Vector2(column * space - space, rows - space / 4)
 	add_child(temp_exit)
 
+func _spawn_boss_random() -> void:
+	var boss = boss_tile.instantiate() as CharacterBody2D
+	boss.global_position = _random_position()
+	add_child(boss)
+
+
 func setup_scene(level: int) -> void:
 	_initialize_list()
 	_board_setup()
-	var enemy_count = 1
-	_spawn_object_random(enemy_tile, enemy_count, enemy_count)
+	if GameController.level == 10:
+		_spawn_boss_random()
+	else:
+		var enemy_count = log(GameController.level)
+		_spawn_object_random(enemy_tile, enemy_count, enemy_count)
 	_spawn_object_random(wall_tile, wall_count.minimum, wall_count.maximum)
 	_spawn_object_random(oxigen_tile, oxigen_count.minimum, oxigen_count.maximum)
 	_spawn_exit()

@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://bk6k0r3f2y2ch"]
+
+[ext_resource type="Script" uid="uid://vptytjnc77hx" path="res://scripts/tiles/boss_tile.gd" id="1_06sqw"]
+[ext_resource type="Texture2D" uid="uid://5rcfxjfifr6n" path="res://assets/monsters.png" id="2_qla21"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_do2u2"]
+atlas = ExtResource("2_qla21")
+region = Rect2(0, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k34jl"]
+atlas = ExtResource("2_qla21")
+region = Rect2(32, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06sqw"]
+atlas = ExtResource("2_qla21")
+region = Rect2(64, 224, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pd5kx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_do2u2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k34jl")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06sqw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44aox"]
+
+[node name="boss_tile" type="CharacterBody2D"]
+z_index = 1
+script = ExtResource("1_06sqw")
+
+[node name="boss_01" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_pd5kx")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_44aox")
+
+[node name="raycast" type="RayCast2D" parent="."]

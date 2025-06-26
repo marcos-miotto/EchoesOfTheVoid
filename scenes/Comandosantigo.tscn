@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhtyb3pfa38wv"]
+[gd_scene load_steps=4 format=3 uid="uid://b0e38q6cpgkv1"]
 
 [ext_resource type="FontFile" uid="uid://csksv1pua4tru" path="res://assets/fonts/Orbitron-Bold.ttf" id="1_arehb"]
 [ext_resource type="FontFile" uid="uid://u1ki2eu5qrpe" path="res://assets/fonts/Orbitron-Regular.ttf" id="2_1f8j8"]
@@ -53,9 +53,7 @@ S / ↓ – Andar para baixo
 
 D / → – Andar para a direita
 
-Espaço – Atacar / Interagir
-
-Esc – Pausar o jogo"
+Espaço – Atacar / Interagir"
 
 [node name="btn_voltar" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 48)

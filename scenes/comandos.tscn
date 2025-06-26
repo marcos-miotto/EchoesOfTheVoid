@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dj0do3c2saxwe"]
+[gd_scene load_steps=5 format=3 uid="uid://dj0do3c2saxwe"]
 
 [ext_resource type="Script" uid="uid://dnlh0m6aawi7d" path="res://scripts/manager/comandos.gd" id="1_1gft6"]
 [ext_resource type="FontFile" uid="uid://8ta8p4wyp067" path="res://assets/fonts/Orbitron-Black.ttf" id="1_lk2ci"]
+[ext_resource type="AudioStream" uid="uid://bphb7tndrba6p" path="res://audio/mouse-click-sound-fx.mp3" id="3_uxm5a"]
+[ext_resource type="AudioStream" uid="uid://c671rdevl4yf8" path="res://audio/sci-fi-button-sound-effect.ogg" id="4_gtw7m"]
 
 [node name="comandos" type="CanvasLayer"]
 script = ExtResource("1_1gft6")
@@ -39,8 +41,7 @@ text = "↑ – Andar para cima
 ← – Andar para a esquerda
 ↓ – Andar para baixo
 → – Andar para a direita
-Espaço – Atacar / Interagir
-Esc – Pausar o jogo"
+Espaço – Atacar / Interagir"
 
 [node name="titulo_tela" type="Label" parent="comandos"]
 layout_mode = 0
@@ -53,6 +54,7 @@ theme_override_font_sizes/font_size = 30
 text = "Comandos do jogo"
 
 [node name="button_menu" type="Button" parent="comandos"]
+layout_mode = 0
 offset_left = 88.0
 offset_top = 248.0
 offset_right = 213.0
@@ -60,4 +62,11 @@ offset_bottom = 279.0
 theme_override_fonts/font = ExtResource("1_lk2ci")
 text = "Menu principal"
 
+[node name="SelectSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_uxm5a")
+
+[node name="HoverSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_gtw7m")
+
+[connection signal="mouse_entered" from="comandos/button_menu" to="." method="_on_button_menu_mouse_entered"]
 [connection signal="pressed" from="comandos/button_menu" to="." method="_on_button_menu_pressed"]

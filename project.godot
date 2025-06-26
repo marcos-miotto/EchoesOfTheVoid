@@ -10,13 +10,15 @@ config_version=5
 
 [application]
 
-config/name="EchoesOfTheVoid"
+config/name="Echoes Of The Void-master"
+run/main_scene="uid://cvx5w7p3york5"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameController="*res://scripts/game_controller.gd"
+MusicPlayer="*res://scenes/MusicPlayer.tscn"
 
 [display]
 

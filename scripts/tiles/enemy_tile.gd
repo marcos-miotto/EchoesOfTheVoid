@@ -1,5 +1,7 @@
+class_name EnemyTile
 extends CharacterBody2D
 
+static var monsters_killed := 0
 var direction : Vector2
 var grid_size : int = GameController.grid_size
 var animator : AnimatedSprite2D
@@ -51,4 +53,7 @@ func apply_damage() -> void:
 	await get_tree().create_timer(0.1).timeout
 	animator.modulate = Color.WHITE
 	
-	if health <= 0: queue_free()
+	if health <= 0: 
+		monsters_killed += 1
+		GameController.killed_count_updated.emit(monsters_killed)
+		queue_free()
